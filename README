@@ -1,0 +1,17 @@
+Create, Start and Update apps on Giant Swarm
+
+
+Example usage
+
+  box: ubuntu
+  build:
+    steps:
+      # A bunch of images don't come with CA certs, you may have to install them
+      - install-packages:
+          packages: ca-certificates
+      - termie/giantswarm:
+          env: YOURNAME/dev
+          # set this var in the wercker app, you can get it from $HOME/.swarm/token
+          # after you login with swarm locally
+          token: $GIANTSWARM_TOKEN
+          opts: --var=domain=helloworld-YOURNAME.gigantic.io
